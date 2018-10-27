@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>董小窝</title>
+    <link rel="icon" href="images/favicon.png" type="images/x-ico" />
+</head>
+<style>
+    /*reset start*/
+    html,body {
+        height: 100%;
+        overflow: hidden;
+    }
+    body,h1,h2,h3,h4,h5,h6,p,ul,ol {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        font-family: "微软雅黑";
+    }
+    li {
+        list-style: none;
+    }
+    a {
+        text-decoration: none;
+    }
+    img {
+        border: none;
+    }
+    a {
+        color: #e07c25;
+    }
+    a:active {
+        color: #e07c25;
+    }
+    /*reset end*/
+
+    /*common start*/
+    .clear {
+        zoom: 1;
+    }
+    .clear:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+    .commonTitle {
+        font-size: 80px;
+        color: #e07c25;
+        font-weight: bold;
+        line-height: .8;
+        letter-spacing: -5px;
+    }
+    .commonText {
+        color: #ffffff;
+        font-size: 15px;
+        line-height: 1.5;
+    }
+    #menu {
+        position: fixed;
+        right: 5px;
+        top: 50%;
+        z-index: 99;
+    }
+    #menu li {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid #ffffff;
+        margin: 10px;
+        cursor: pointer;
+    }
+    #menu li.active {
+        background: #ffffff;
+        cursor: default;
+    }
+    /*common end*/
+
+    /*frame start*/
+    #main {
+        height: 100%;
+        width: 100%;
+    }
+    #header {
+        width: 100%;
+        height: 80px;
+        background: #ffffff;
+    }
+    #headMain {
+        width: 1100px;
+        height: 100%;
+        margin: 0 auto;
+        position: relative;
+    }
+    #logo {
+        float: left;
+    }
+    #logo img {
+        width: 250px;
+        height: 90px;
+    }
+    #nav {
+        float: right;
+        margin-top: 50px;
+    }
+    #nav li {
+        float: left;
+        margin-left: 40px;
+        position: relative;
+    }
+    #nav li .up {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        color: #000;
+        width: 0%;
+        overflow: hidden;
+        -webkit-transition: .5s width;
+        -moz-transition: .5s width;
+        -ms-transition: .5s width;
+        -o-transition: .5s width;
+        transition: .5s width;
+    }
+    #nav li:hover .up {
+        width: 100%;
+    }
+    #arrow {
+        width: 21px;
+        height: 11px;
+        background: url("images/arrow.png") no-repeat;
+        position: absolute;
+        left: 50%;
+        bottom: -25px;
+        z-index: 10;
+        -webkit-transition: .5s left;
+        -moz-transition: .5s left;
+        -ms-transition: .5s left;
+        -o-transition: .5s left;
+        transition: .5s left;
+    }
+    #content {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+    }
+    #list {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        -webkit-transition: .5s top;
+        -moz-transition: .5s top;
+        -ms-transition: .5s top;
+        -o-transition: .5s top;
+        transition: .5s top;
+    }
+    #list .liList {
+        width: 2000px;
+        color: #ffffff;
+        position: relative;
+        left: 50%;
+        margin-left: -1000px;
+        overflow: hidden;
+    }
+    #list .divList {
+        width: 1100px;
+        height: 520px;
+        margin: 20px auto;
+    }
+
+    /*frame end*/
+
+    /*home start*/
+    #home {
+        background: url("images/bg1.jpg") no-repeat;
+    }
+    #homeContent .homeContent1 {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        perspective: -800px;
+        transform-style: preserve-3d;
+        -webkit-perspective:800px;
+        -webkit-transform-style:preserve-3d;
+    }
+    #homeContent .homeContent1 li {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+        background: #333;
+    }
+    #homeContent .homeContent1 li:nth-of-type(1) {
+        background: #dc6c5f;
+    }
+    #homeContent .homeContent1 li:nth-of-type(2) {
+        background: #95dc84;
+    }
+    #homeContent .homeContent1 li:nth-of-type(3) {
+        background: #64b9d2;
+    }
+    #homeContent .homeContent1 li h1 {
+        color: #fff;
+        width: 100%;
+        text-align: center;
+        margin-top: 200px;
+    }
+    #homeContent .homeContent1 li.active {
+        visibility: visible;
+    }
+    #homeContent .homeContent1 .leftShow {
+        animation: homeLeftShow 1s;
+        visibility: visible;
+        z-index: 3;
+    }
+    #homeContent .homeContent1 .rightHide {
+        animation: homeRightHide 1s;
+        visibility: hidden;
+    }
+    
+    #homeContent .homeContent1 .leftHide {
+        animation: homeLeftHide 1s;
+        visibility: hidden;
+    }
+    #homeContent .homeContent1 .rightShow {
+        animation: homeRightShow 1s;
+        visibility: visible;
+        z-index: 3;
+    }
+    /*leftHide 和 rightShow*/
+    @keyframes homeLeftHide {
+        0%{ transform: translateZ(0);
+            visibility: visible;}
+        40%{ transform: translate(-45%, 0) scale(0.8) rotateY(30deg)}
+        100%{ transform: translateZ(-200px)}
+    }
+    @keyframes homeRightShow {
+        0%{ transform: translateZ(-200px);}
+        40%{ transform: translate(45%, 0) scale(0.8) rotateY(-30deg)}
+        100%{ transform: translateZ(0)}
+    }
+    /*leftShow 和 rightHide*/
+    @keyframes homeLeftShow {
+        0%{ transform: translateZ(-200px);}
+        40%{ transform: translate(-45%, 0) scale(0.8) rotateY(30deg)}
+        100%{ transform: translateZ(0)}
+    }
+    @keyframes homeRightHide {
+        0%{ transform: translateZ(0px); visibility: visible;}
+        40%{ transform: translate(45%, 0) scale(0.8) rotateY(-30deg)}
+        100%{ transform: translateZ(-200px)}
+    }
+    
+    
+
+    #homeContent .homeContent2 {
+        position: relative;
+        bottom: 28px;
+        z-index: 3;
+        width: 100%;
+        text-align: center;
+    }
+    #homeContent .homeContent2 li {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(255,255,255,.5);
+        box-shadow: 0 0 2px rgba(0,0,0,.5);
+        display: inline-block;
+        margin-left: 3px;
+        cursor: pointer;
+    }
+    #homeContent .homeContent2 li.active {
+        background: #ffffff;
+        cursor: default;
+    }
+    /*home end*/
+
+    /*read start*/
+    #read {
+        background: url("images/bg3.jpg") no-repeat;
+    }
+    #readContent {
+        position: relative;
+    }
+    #readContent .readContent1 {
+        padding: 50px 0 100px 50px;
+    }
+    #readContent .readContent2 {
+        padding-left: 50px;
+    }
+    #readContent .readImgParent {
+        width: 220px;
+        height: 133px;
+        float: left;
+        overflow: hidden;
+        margin: 0 1px;
+        position: relative;
+    }
+    #readContent .readImgParent:last-of-type {
+        width: 332px;
+    }
+    #readContent .readImg {
+        transition: .5s transform;
+    }
+    #readContent .readImgMark {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background: rgba(0,0,0,.4);
+        padding: 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        opacity: 0;
+        transition: .5s opacity;
+    }
+    #readContent .readImgParent:hover .readImgMark {
+        opacity: 1;
+    }
+    #readContent .readImgParent:hover .readImg {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5) rotate(20deg);
+    }
+    #readContent .readImgMark div {
+        width: 32px;
+        height: 34px;
+        background: url("images/zoomico.png") no-repeat;
+        margin: 10px auto;
+        cursor: pointer;
+        transition: .5s;
+    }
+    #readContent .readImgMark div:hover {
+        background-position: 0 -36px;
+    }
+    #readContent .readContent3 {
+        width: 167px;
+        height: 191px;
+        background: url("images/robot.png") no-repeat;
+        position: absolute;
+        left:900px;
+        top:170px;
+        -webkit-animation: readMove 10s linear infinite;
+        -o-animation: readMove 10s linear infinite;
+        animation: readMove 10s linear infinite;
+    }
+    @keyframes readMove {
+        0%{}
+        49%{transform:rotateY(0deg);}
+        50%{ left:450px; transform:rotateY(180deg);}
+        100%{ transform:rotateY(180deg);}
+    }
+    /*read end*/
+
+    /*video start*/
+    #video {
+        background: url("images/bg4.jpg") no-repeat;
+    }
+    #video .videoContent1 {
+        padding: 50px;
+    }
+    #video .videoContent2 {
+        width: 400px;
+        padding-left: 50px;
+    }
+    #video .videoContent3 {
+        width: 480px;
+        height: 410px;
+        position: absolute;
+        top: 70px;
+        right: 490px;
+    }
+    #video .videoLine {
+        width: 9px;
+        height: 410px;
+        background: url("images/plus_row.png") no-repeat;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        margin-top: -4px;
+        margin-left: -5px;
+    }
+    #video .videoPic {
+        width: 120px;
+        height: 132px;
+        float: left;
+        margin-top: 1px;
+        position: relative;
+        cursor: pointer;
+        perspective: 800px;
+        -webkit-perspective:800px;
+    }
+    #video .videoBefore {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-repeat: no-repeat;
+        background-position: center center;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transition: 1s;
+    }
+    #video .videoAfter {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0,0,0,.3);
+        padding: 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        text-indent: 2em;
+        -webkit-transform: rotateY(-180deg);
+        -moz-transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg);
+        -o-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transition: 1s;
+    }
+    #video .videoPic:hover .videoBefore {
+        -webkit-transform: rotateY(-180deg);
+        -moz-transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg);
+        -o-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+    }
+    #video .videoPic:hover .videoAfter {
+        -webkit-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+    /*video end*/
+
+    /*news start*/
+    #news {
+        background: url("images/bg5.jpg") no-repeat;
+    }
+    #newsContent .newsContent1 {
+        padding: 50px;
+    }
+    #newsContent .newsContent2 {
+        width: 400px;
+        padding-left: 50px;
+    }
+    #newsContent .newsImg {
+        position: absolute;
+        width: 260px;
+        height: 200px;
+        border-radius: 8px;
+        border: 5px solid rgba(255,255,255, .5);
+        cursor: pointer;
+        overflow: hidden;
+    }
+    #newsContent .newsImg:nth-of-type(1) {
+        left: 1160px;
+        top: 50px;
+    }
+    #newsContent .newsImg:nth-of-type(2) {
+        left: 930px;
+        top: 290px;
+    }
+    #newsContent .newsImg ul {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 5;
+    }
+    #newsContent .newsImg ul li {
+        position: relative;
+        float: left;
+        overflow: hidden;
+    }
+    #newsContent .newsImg ul li img {
+        position: absolute;
+        -webkit-transition:  0.5s;
+        -moz-transition:  0.5s;
+        -ms-transition:  0.5s;
+        -o-transition:  0.5s;
+        transition:  0.5s;
+    }
+    #newsContent .newsImg span {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5);
+        -webkit-transition: transform 1s;
+        -moz-transition: transform 1s;
+        -ms-transition: transform 1s;
+        -o-transition: transform 1s;
+        transition: transform 1s;
+    }
+    /*news end*/
+</style>
+<script>
+    window.onload = function() {
+        var oHeader = $('header');
+        var oNav = $('nav');
+        var oList = $('list');
+        var oContent = $('content');
+        var aLiNav = oNav.getElementsByTagName('li');
+        var aLiList = getByClass( oList, 'liList');
+        var aDivList = getByClass( oList, 'divList');
+        var oReadContent = $('readContent');
+        var oReadContent2 = getByClass( oReadContent, 'readContent2' )[0];
+        var oHomeContent = $('homeContent');
+        var oHomeContent1 = getByClass( oHomeContent, 'homeContent1')[0];
+        var oHomeContent2 = getByClass( oHomeContent, 'homeContent2')[0];
+        var oArrow = $('arrow');
+        var oNewsContent = $('newsContent');
+        var oNewsContent3 = getByClass(oNewsContent, 'newsContent3')[0];
+        var oMenu = $('menu');
+        var aMenuLi = oMenu.getElementsByTagName('li');
+
+        var iNow = 0;
+        var iContentHeight = 0;
+        contentAuto();
+        bindNav();
+        mouseWheel();
+        readContent();
+        homeContent();
+        newsContent();
+        window.onresise = fnResise;
+
+
+        function bindNav() {
+            var oDiv = aLiNav[0].getElementsByTagName('div')[0];
+            oDiv.style.width = '100%';
+            oArrow.style.left = aLiNav[0].offsetLeft + aLiNav[0].offsetWidth/2 - oArrow.offsetWidth/2 + 'px';
+
+            for(var i=0;i<aLiNav.length;i++) {
+                aLiNav[i].index = i;
+                aLiNav[i].onmousedown = function() {
+                   toMove(this.index);
+                   iNow = this.index;
+                }
+            }
+
+            for(var i=0;i<aMenuLi.length;i++) {
+                aMenuLi[i].index = i;
+                aMenuLi[i].onclick = function() {
+                    toMove(this.index);
+                };
+            }
+        }
+
+        function contentAuto() {
+            iContentHeight = viewWidth() - oHeader.offsetHeight;
+            oContent.style.height = iContentHeight + 'px';
+            for(var i=0;i<aLiList.length;i++) {
+                aLiList[i].style.height = iContentHeight + 'px';
+            }
+            oList.style.top = -iNow * iContentHeight + 'px';
+        }
+
+        function fnResise() {
+            contentAuto();
+        }
+
+        function mouseWheel() {
+
+            var bBtn = true;
+            var timer = null;
+//            Firefox的用法
+            if(oContent.addEventListener) {
+                oContent.addEventListener('DOMMouseScroll', function(ev) {
+                    var ev = window.event || ev;
+                    clearTimeout(timer);
+                    timer = setTimeout(function() {
+                        toChange(ev);
+                    },200);
+                }, false);
+            }
+//            Chrome的用法
+            oContent.onmousewheel = function() {
+                var ev = window.event || ev;
+                clearTimeout(timer);
+                timer = setTimeout(function() {
+                    toChange(ev);
+                },200);
+            };
+
+            function toChange(ev) {
+                var ev = window.event || ev;
+//                针对Firefox写法的判断鼠标滚轮方向
+                if(ev.detail) {
+                    bBtn = ev.detail > 0 ? true:false;
+                }else {
+//                针对Chrome写法的判断鼠标滚轮方向
+                    bBtn = ev.wheelDelta < 0 ? true:false;
+                }
+                if(bBtn) {
+                    if(iNow != aLiList.length - 1) {
+                        iNow++;
+                        toMove(iNow);
+                    }
+                }else {
+                    if(iNow != 0) {
+                        iNow--;
+                        toMove(iNow);
+                    }
+                }
+
+//                清除默认行为
+                if(ev.preventDefault) {
+                    ev.preventDefault();
+                }else {
+                    return false;
+                }
+
+            }
+        }
+
+//        read的readContent2框架样式
+        function readContent() {
+
+            var data = [
+                { img: 'images/worksimg1.jpg', text: '测试文字，哈哈哈啊司法所地方测试文字，哈哈哈啊司法所地方'},
+                { img: 'images/worksimg2.jpg', text: '测试文字，哈哈哈啊司法所地方测试文字，哈哈哈啊司法所地方'},
+                { img: 'images/worksimg3.jpg', text: '测试文字，哈哈哈啊司法所地方测试文字，哈哈哈啊司法所地方'},
+                { img: 'images/worksimg4.jpg', text: '测试文字，哈哈哈啊司法所地方测试文字，哈哈哈啊司法所地方'}
+            ];
+            for(var i=0;i<data.length;i++) {
+                var oDivParent = document.createElement('div');
+                oDivParent.className = 'readImgParent';
+                oDivParent.innerHTML = '<img class="readImg" src="'+( data[i].img )+'"><div class="readImgMark"><span>'+( data[i].text )+'</span><div></div></div>';
+                oReadContent2.appendChild(oDivParent);
+            }
+        }
+
+        function homeContent() {
+//            oHomeContent1
+//            oHomeContent2
+            var aLi1 = oHomeContent1.getElementsByTagName('li');
+            var aLi2 = oHomeContent2.getElementsByTagName('li');
+            var oldIndex = 0;
+            var iNowHome = 0;
+
+            var data = [
+                {text: 'one layer'},
+                {text: 'two layer'},
+                {text: 'three layer'},
+                {text: '我是谁'}
+            ];
+
+            homeCreate();
+            function homeCreate() {
+                for(var i=0;i<data.length;i++) {
+                    var aLi1 = document.createElement('li');
+                    var aLi2 = document.createElement('li');
+                    aLi1.innerHTML = '<h1 class="commonTitle">' + (data[i].text) + '</h1>';
+                    if( i == 0 ) {
+                        aLi1.className = 'active';
+                        aLi2.className = 'active';
+                    }
+                    oHomeContent1.appendChild(aLi1);
+                    oHomeContent2.appendChild(aLi2);
+                }
+            }
+            for(var i=0;i<aLi2.length;i++) {
+                aLi2[i].index = i;
+                aLi2[i].onclick = function() {
+                    for(var i=0;i<aLi2.length;i++) {
+                        aLi2[i].className = '';
+                    }
+                    this.className = 'active';
+
+                    //            判断是从左往右还是从右往左
+                    if( oldIndex < this.index ) {        //左-->右
+                        aLi1[oldIndex].className = 'leftHide';
+                        aLi1[this.index].className = 'rightShow';
+                    }else if( oldIndex > this.index ) {  //右-->左
+                        aLi1[oldIndex].className = 'rightHide';
+                        aLi1[this.index].className = 'leftShow';
+                    }
+                    oldIndex = this.index;
+                    iNowHome = this.index;
+                };
+            }
+
+            var timer = setInterval(toChange, 2000);
+
+            oHomeContent.onmouseover = function() {
+                clearInterval(timer);
+            };
+
+            function toChange() {
+                iNowHome++;
+                if(iNowHome == aLi2.length) {
+                    iNowHome = 0;
+                }
+                for(var i=0;i<aLi2.length;i++) {
+                    aLi2[i].className = '';
+                }
+                aLi2[iNowHome].className = 'active';
+                aLi1[oldIndex].className = 'leftHide';
+                aLi1[iNowHome].className = 'rightShow';
+                oldIndex = iNowHome;
+            }
+
+        }
+
+
+        function newsContent() {
+//            oNewsContent3
+            var aUl = oNewsContent3.getElementsByTagName('ul');
+            var aSpan = oNewsContent3.getElementsByTagName('span');
+
+            for(var i=0;i<aUl.length;i++) {
+                change( aUl[i], aSpan[i]);
+            }
+
+            function change(ul, span) {
+                var w = ul.offsetWidth/2;
+                var h = ul.offsetHeight/2;
+                var src = ul.dataset.src;
+
+                for(var i=0;i<4;i++) {
+                    var oLi = document.createElement('li');
+                    oLi.style.width = w + 'px';
+                    oLi.style.height = h + 'px';
+                    var oImg = document.createElement('img');
+                    oImg.src = src;
+                    oImg.style.left = - i%2 * w + 'px';
+                    oImg.oldleft = - i%2 * w;
+                    oImg.style.top = - Math.floor(i/2) * h + 'px';
+                    oImg.oldtop = - Math.floor(i/2) * h;
+                    oLi.appendChild(oImg);
+                    ul.appendChild(oLi);
+                }
+
+                var data = [
+                    { name : 'top' , value : h },
+                    { name : 'left' , value :  -w*2 },
+                    { name : 'left' , value : w },
+                    { name : 'top' , value :  -h*2 },
+                ];
+                var aImg = ul.getElementsByTagName('img');
+                ul.onmouseenter = function() {
+                    for(var i=0;i<aImg.length;i++){
+                        aImg[i].style[ data[i].name ] = data[i].value + 'px';
+                    }
+                    setStyle(span, 'transform', 'scale(1)');
+                };
+                ul.onmouseleave = function() {
+                    for(var i=0;i<aImg.length;i++) {
+                        aImg[i].style[ data[i].name ] = aImg[i]['old' + data[i].name] + 'px';
+                    }
+                    setStyle(span, 'transform', 'scale(1.5)');
+                };
+            }
+        }
+
+        function setStyle(obj, attr, value) {
+            obj.style[attr] = value;
+            obj.style['webkit' + attr.substring(0,1).toUpperCase() + attr.substring(1)] = value;
+        }
+
+        function toMove(index) {
+            for(var i=0;i<aLiNav.length;i++) {
+                var oDiv = aLiNav[i].getElementsByTagName('div')[0];
+                oDiv.style.width = '';
+            }
+            var oDiv = aLiNav[index].getElementsByTagName('div')[0];
+            oDiv.style.width = '100%';
+            oArrow.style.left = aLiNav[index].offsetLeft + aLiNav[index].offsetWidth/2 - oArrow.offsetWidth/2 + 'px';
+            oList.style.top = -index * iContentHeight + 'px';
+
+            for(var i=0;i<aMenuLi.length;i++) {
+                aMenuLi[i].className = '';
+            }
+            aMenuLi[index].className = 'active';
+        }
+
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+//        获取可视区的宽的方法
+        function viewWidth() {
+            return window.innerWidth || document.documentElement.clientWidth;
+        }
+//        获取可视区的高的方法
+        function viewHeight() {
+            return window.innerHeight || document.documentElement.clientHeight;
+        }
+
+//        通过类名获取元素
+        function getByClass(oParent,sClass) {
+            var aElem = oParent.getElementsByTagName('*');
+            var arr = [];
+            for(var i=0;i<aElem.length;i++) {
+                if(aElem[i].className == sClass) {
+                    arr.push( aElem[i] );
+                }
+            }
+            return arr;
+        }
+    }
+</script>
+<body>
+    <div id="main">
+        <div id="header">
+            <div id="headMain">
+                <a href="javascript:;" id="logo">
+                    <img src="images/logo.png" alt="logo">
+                </a>
+                <ul id="nav">
+                    <li>
+                        <a href="javascript:;">
+                            <div class="up"><img src="images/home_gruen.png" alt=""></div>
+                            <div><img src="images/home.png" alt=""></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <div class="up">Read</div>
+                            <div>Read</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <div class="up">Video</div>
+                            <div>Video</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <div class="up">News</div>
+                            <div>News</div>
+                        </a>
+                    </li>
+                </ul>
+                <div id="arrow"></div>
+            </div>
+        </div>
+        <div id="content">
+            <ul id="menu">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <ul id="list">
+                <li id="home" class="liList">
+                    <div id="homeContent" class="divList">
+                        <ul class="homeContent1">
+                            <!--<li class="active">-->
+                                <!--<h1 class="commonTitle">one layar</h1>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<h1 class="commonTitle">two layar</h1>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<h1 class="commonTitle">three layar</h1>-->
+                            <!--</li>-->
+                        </ul>
+                        <ul class="homeContent2">
+                            <!--<li class="active"></li>-->
+                            <!--<li></li>-->
+                            <!--<li></li>-->
+                        </ul>
+                    </div>
+                </li>
+                <li id="read" class="liList">
+                    <div id="readContent" class="divList">
+                        <div class="readContent1">
+                            <h1 class="commonTitle">
+                                <span>YUEDU</span> <br>
+                                <span>HAIXIGUAN</span> <br>
+                                <span>AIYUEDU</span> <br>
+                            </h1>
+                        </div>
+                        <div class="readContent2">
+                            <!--<div class="readImgParent">-->
+                                <!--<img class="readImg" src="images/worksimg1.jpg" alt="">-->
+                                <!--<div class="readImgMark">-->
+                                    <!--<span>测试文字，哈哈哈啊司法所地方测试文字，哈哈哈啊司法所地方</span>-->
+                                    <!--<div></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="readImgParent">-->
+                                <!--<img class="readImg" src="images/worksimg2.jpg" alt="">-->
+                                <!--<div class="readImgMark">-->
+                                    <!--<span>测试文字，哈哈哈啊司法所地方测试文字，哈哈哈啊司法所地方</span>-->
+                                    <!--<div></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="readImgParent">-->
+                                <!--<img class="readImg" src="images/worksimg3.jpg" alt="">-->
+                                <!--<div class="readImgMark">-->
+                                    <!--<span>测试文字，哈哈哈啊司法所地方测试文字，哈哈哈啊司法所地方</span>-->
+                                    <!--<div></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="readImgParent">-->
+                                <!--<img class="readImg" src="images/worksimg4.jpg" alt="">-->
+                                <!--<div class="readImgMark">-->
+                                    <!--<span>测试文字，哈哈哈啊司法所地方测试文字，哈哈哈啊司法所地方</span>-->
+                                    <!--<div></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="readContent3"></div>
+                    </div>
+                </li>
+                <li id="video" class="liList">
+                    <div id="videoContent" class="divList">
+                        <div class="videoContent1">
+                            <h1 class="commonTitle">
+                                <span>HDKAH</span> <br>
+                                <span>LUAND</span> <br>
+                                <span>POLAN</span>
+                            </h1>
+                        </div>
+                        <div class="videoContent2">
+                            <p class="commonText">
+                                Das Kundenvertrauen in unsere Kompetenz ist die notwendige Basis einer erfolgreichen Zusammenarbeit, gleichzeitig aber auch das größte Lob, das man uns entgegenbringen kann.
+                                <br>
+                                Diese und viele weitere große und kleine Kunden vertrauen uns seit Jahren, was uns stolz macht, und dafür sagen wir an dieser Stelle einfach mal.
+                            </p>
+                        </div>
+                        <div class="videoContent3">
+                            <div class="videoLine"></div>
+                            <div class="videoLine" style="left: 120px;"></div>
+                            <div class="videoLine" style="left: 240px;"></div>
+                            <div class="videoLine" style="left: 360px;"></div>
+                            <div class="videoLine" style="left: 480px;"></div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/lbs.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/lbs.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/lbs.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/lbs.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/lbs.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/binoli.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/binoli.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/binoli.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/binoli.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/binoli.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/binoli.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                            <div class="videoPic">
+                                <div class="videoBefore" style="background-image: url(images/binoli.png);"></div>
+                                <div class="videoAfter">文字测试</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li id="news" class="liList">
+                    <div id="newsContent" class="divList">
+                        <div class="newsContent1">
+                            <h1 class="commonTitle">
+                                <span>NEWS</span> <br>
+                                <span>NEWS</span> <br>
+                                <span>NEWS</span>
+                            </h1>
+                        </div>
+                        <div class="newsContent2">
+                            <p class="commonText">
+                                Der bunte Medienmix ist die Faszination die uns antreibt und das, was man an uns schätzt. Von A bis Z und von vorne bis hinten nehmen wir Ihr Projekt unter unsere Fittiche und lassen es zu etwas Großartigem heranwachsen.
+                            </p>
+                        </div>
+                        <div class="newsContent3">
+                            <div class="newsImg">
+                                <ul data-src="images/about1.jpg">
+                                </ul>
+                                <span style="background: url(images/about2.jpg) no-repeat;"></span>
+                            </div>
+                            <div class="newsImg">
+                                <ul data-src="images/about3.jpg">
+                                </ul>
+                                <span style="background: url(images/about4.jpg) no-repeat;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
